@@ -94,10 +94,10 @@ hello$(EXE): $(HELLO_OBJS) $(TINYCTHREAD_OBJS)
 %.o: %.cpp
 	$(CC) $(CFLAGS) $<
 
-%.o: ../source/%.c
+%.o: ../src
 	$(CC) $(CFLAGS) $<
 
 # Dependencies
-hello.o: hello.c ../source/tinycthread.h
-test.o: test.c ../source/tinycthread.h
-tinycthread.o: ../source/tinycthread.c ../source/tinycthread.h
+hello.o: hello.c ../src
+test.o: test.c ../src
+tinycthread.o: ../src ../src

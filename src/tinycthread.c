@@ -22,8 +22,10 @@ freely, subject to the following restrictions:
     distribution.
 */
 
-#include "tinycthread.h"
+#include "../include/tinycthread.h"
+
 #include <stdlib.h>
+#include <stddef.h>
 
 /* Platform specific includes */
 #if defined(_TTHREAD_POSIX_)
@@ -38,9 +40,6 @@ freely, subject to the following restrictions:
 #endif
 
 /* Standard, good-to-have defines */
-#ifndef NULL
-  #define NULL (void*)0
-#endif
 #ifndef TRUE
   #define TRUE 1
 #endif
@@ -276,7 +275,7 @@ int mtx_unlock(mtx_t *mtx)
   }
   return thrd_success;
 #else
-  return pthread_mutex_unlock(mtx) == 0 ? thrd_success : thrd_error;;
+  return pthread_mutex_unlock(mtx) == 0 ? thrd_success : thrd_error;
 #endif
 }
 
@@ -478,7 +477,7 @@ struct TinyCThreadTSSData {
   struct TinyCThreadTSSData* next;
 };
 
-static tss_dtor_t _tinycthread_tss_dtors[1088] = { NULL, };
+static tss_dtor_t _tinycthread_tss_dtors[1088] = { NULL };
 
 static _Thread_local struct TinyCThreadTSSData* _tinycthread_tss_head = NULL;
 static _Thread_local struct TinyCThreadTSSData* _tinycthread_tss_tail = NULL;
